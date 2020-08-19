@@ -30,7 +30,7 @@ import java.util.List;
 @RequestMapping("/goods")
 public class GoodsController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Reference(interfaceClass = UserServiceApi.class)
+    @Reference(interfaceClass = UserServiceApi.class,check = false)
     UserServiceApi userService;
     @Reference(interfaceClass = RedisServiceApi.class)
     RedisServiceApi redisService;
@@ -49,7 +49,7 @@ public class GoodsController {
         }
         // 从redis中取商品列表页
         String html = redisService.get(GoodsKey.goodsList, "", String.class);
-        // redis中没有，自己渲染，并放入rdis中
+        // redis中没有，自己渲染，并放入redis中
         if (StringUtils.isEmpty(html)) {
             model.addAttribute("user", miaoshaUser);
             List<GoodsVo> goodsList = goodsService.listGoodsVo();

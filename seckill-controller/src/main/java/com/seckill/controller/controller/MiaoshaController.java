@@ -44,10 +44,13 @@ public class MiaoshaController implements InitializingBean {
     Map<Long, Boolean> isOverMap = new ConcurrentHashMap<Long, Boolean>();
     @Reference(interfaceClass = SeckillApi.class)
     SeckillApi miaoshaService;
+
     @Reference(interfaceClass = RabbitMQApi.class)
     RabbitMQApi rabbitMqSender;
+
     @Reference(interfaceClass = UserServiceApi.class)
     UserServiceApi userService;
+
     @Reference(interfaceClass = RedisServiceApi.class)
     RedisServiceApi redisService;
     @Reference(interfaceClass = GoodsServiceApi.class, version = "goods")
